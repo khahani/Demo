@@ -168,4 +168,10 @@ dependencies {
     androidTestImplementation "androidx.appcompat:appcompat:$androidx_appcompat_appcompat"
     androidTestImplementation "com.google.android.material:material:$com_google_android_material_material"
 
+    //Retrofit
+    implementation "com.squareup.retrofit2:retrofit:$com_squareup_retrofit2_retrofit"
+    implementation "com.squareup.moshi:moshi-kotlin:$com_squareup_moshi_moshi_kotlin"
+    implementation "com.squareup.okhttp3:logging-interceptor:$com_squareup_okhttp3_logging_interceptor"
+    implementation "com.squareup.retrofit2:converter-moshi:$com_squareup_retrofit2_converter_moshi"
+
 }
