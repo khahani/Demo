@@ -1,0 +1,171 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'androidx.navigation.safeargs.kotlin'
+}
+
+android {
+    compileSdkVersion rootProject.compileSdkVersion
+
+    defaultConfig {
+        applicationId "de.check24.girokonto"
+        minSdkVersion rootProject.minSdkVersion
+        targetSdkVersion rootProject.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
+    }
+
+    android {
+        sourceSets {
+            String sharedTestDir = 'src/sharedTest/java'
+            test {
+                java.srcDirs += sharedTestDir
+            }
+            androidTest {
+                java.srcDirs += sharedTestDir
+            }
+        }
+    }
+
+    buildTypes {
+        debug {
+            minifyEnabled false
+            testCoverageEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            testProguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguardTest-rules.pro'
+        }
+
+        release {
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            testProguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguardTest-rules.pro'
+        }
+    }
+
+    flavorDimensions "default"
+
+    productFlavors {
+        mock {
+            dimension "default"
+            applicationIdSuffix = ".mock"
+        }
+        prod {
+            dimension "default"
+        }
+    }
+
+    // Remove mockRelease as it's not needed.
+    android.variantFilter { variant ->
+        if (variant.buildType.name == 'release'
+                && variant.getFlavors().get(0).name == 'mock') {
+            variant.setIgnore(true)
+        }
+    }
+
+    // Always show the result of every unit test, even if it passes.
+    testOptions.unitTests {
+        includeAndroidResources = true
+
+        all {
+            testLogging {
+                events 'passed', 'skipped', 'failed', 'standardOut', 'standardError'
+            }
+        }
+    }
+
+    dataBinding {
+        enabled = true
+        enabledForTests = true
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    buildFeatures {
+        viewBinding true
+    }
+
+    packagingOptions {
+        exclude 'META-INF/AL2.0'
+        exclude 'META-INF/LGPL2.1'
+    }
+}
+
+dependencies {
+
+    // App dependencies
+    implementation "androidx.appcompat:appcompat:$androidx_appcompat_appcompat"
+    implementation "androidx.cardview:cardview:$androidx_cardview_cardview"
+    implementation "com.google.android.material:material:$com_google_android_material_material"
+    implementation "androidx.recyclerview:recyclerview:$androidx_recyclerview_recyclerview"
+    implementation "androidx.annotation:annotation:$androidx_annotation_annotation"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$org_jetbrains_kotlinx_kotlinx_coroutines_android"
+    implementation "com.jakewharton.timber:timber:$com_jakewharton_timber_timber"
+    implementation "androidx.legacy:legacy-support-v4:$androidx_legacy_legacy_support_v4"
+    implementation "androidx.test.espresso:espresso-idling-resource:androidx_test_espresso_espresso_idling_resource"
+    implementation "androidx.room:room-runtime:$androidx_room_room_runtime"
+    kapt "androidx.room:room-compiler:$androidx_room_room_compiler"
+
+    // Architecture Components
+    implementation "androidx.room:room-ktx:$androidx_room_room_ktx"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$androidx_lifecycle_lifecycle_viewmodel_ktx"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$androidx_lifecycle_lifecycle_livedata_ktx"
+    implementation "androidx.navigation:navigation-fragment-ktx:$androidx_navigation_navigation_fragment_ktx"
+    implementation "androidx.navigation:navigation-ui-ktx:$androidx_navigation_navigation_ui_ktx"
+
+    // Dependencies for local unit tests
+    testImplementation "junit:junit:$junit_junit"
+    testImplementation "org.hamcrest:hamcrest-all:$org_hamcrest_hamcrest_all"
+    testImplementation "androidx.arch.core:core-testing:$androidx_arch_core_core_testing"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$org_jetbrains_kotlinx_kotlinx_coroutines_test_android"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$org_jetbrains_kotlinx_kotlinx_coroutines_test"
+    testImplementation "org.robolectric:robolectric:$org_robolectric_robolectric"
+    testImplementation "androidx.navigation:navigation-testing:$androidx_navigation_navigation_testing"
+    testImplementation "androidx.test.espresso:espresso-core:$androidx_test_espresso_espresso_core"
+    testImplementation "androidx.test.espresso:espresso-contrib:$androidx_test_espresso_espresso_contrib"
+    testImplementation "androidx.test.espresso:espresso-intents:$androidx_test_espresso_espresso_intents"
+    testImplementation "com.google.truth:truth:$com_google_truth_truth"
+
+    // Dependencies for Android unit tests
+    androidTestImplementation "junit:junit:$junit_junit"
+    androidTestImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$org_jetbrains_kotlinx_kotlinx_coroutines_test"
+
+    // AndroidX Test - JVM testing
+    testImplementation "androidx.test:core-ktx:$androidx_test_core_ktx"
+    testImplementation "androidx.test.ext:junit-ktx:$androidx_test_ext_junit_ktx"
+    testImplementation "androidx.test:rules:$androidx_test_rules"
+    // Once https://issuetracker.google.com/127986458 is fixed this can be testImplementation
+    debugImplementation "androidx.fragment:fragment-testing:$androidx_fragment_fragment_testing"
+    implementation "androidx.test:core:$androidx_test_core_ktx"
+    implementation "androidx.fragment:fragment-ktx:$androidx_fragment_fragment_ktx"
+
+    // AndroidX Test - Instrumented testing
+    androidTestImplementation "androidx.test:core-ktx:$androidx_test_core_ktx"
+    androidTestImplementation "androidx.test.ext:junit-ktx:$androidx_test_ext_junit_ktx"
+    androidTestImplementation "androidx.test:rules:$androidx_test_rules"
+    androidTestImplementation "androidx.room:room-testing:$androidx_room_room_testing"
+    androidTestImplementation "androidx.arch.core:core-testing:$androidx_arch_core_core_testing"
+    androidTestImplementation "androidx.navigation:navigation-testing:$androidx_navigation_navigation_testing"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$androidx_test_espresso_espresso_core"
+    androidTestImplementation "androidx.test.espresso:espresso-contrib:$androidx_test_espresso_espresso_contrib"
+    androidTestImplementation "androidx.test.espresso:espresso-intents:$androidx_test_espresso_espresso_intents"
+    androidTestImplementation "androidx.test.espresso.idling:idling-concurrent:$androidx_test_espresso_idling_idling_concurrent"
+    androidTestImplementation "org.robolectric:annotations:$org_robolectric_annotations"
+    implementation "androidx.test.espresso:espresso-idling-resource:$androidx_test_espresso_espresso_idling_resource"
+
+    // Resolve conflicts between main and test APK:
+    androidTestImplementation "androidx.annotation:annotation:$androidx_annotation_annotation"
+    androidTestImplementation "androidx.legacy:legacy-support-v4:$androidx_legacy_legacy_support_v4"
+    androidTestImplementation "androidx.recyclerview:recyclerview:$androidx_recyclerview_recyclerview"
+    androidTestImplementation "androidx.appcompat:appcompat:$androidx_appcompat_appcompat"
+    androidTestImplementation "com.google.android.material:material:$com_google_android_material_material"
+
+}
