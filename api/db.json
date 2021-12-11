@@ -1,0 +1,30 @@
+{
+  "first-page": {
+    "slogan": {
+      "titles": [
+        "schnell, einfach & sicher",
+        "In 30 minuten eroffnen und umziehen",
+        "Kostenlose Konten & bis zu 75 € Bonus"
+      ],
+      "logo": "https://www.check24.de/assets/images/mobile/misc/funktioniert_garantie_girokonto.png"
+    },
+    "recommend": [
+      {
+        "title": "Empfehlung bedingungslos kostenlose Kontoführung",
+        "text": "Das dauerhaft kostenlose Girokonto der DKB glänzt durch kostenlose Bargeldabhebung weltweit, eine kostenlose VISA Debitkarte sowie einen sehr attraktiven Dispozins. Zusätzlich kann man bargeldlos mit Apple und Google Pay bezahlen.",
+        "short": "DKB - Girokonto",
+        "image": "https://konten.c24static.de/accounts/static/banklogos/all/dkb.png",
+        "fee": 0.0,
+        "bonus": null
+      },
+      {
+        "title": "Empfehlung Exklusivaktion",
+        "text": "Das PlusKonto der HypoVereinsbank punktet durch kostenlose Kontoführung, kostenlose Kreditkarte, sehr niedrigen Dispozins von 2,66% und 75€ Bonus (bei Teilnahme am Vorteilsprogramm).",
+        "short": "HypoVereinsbank - HVB PlusKonto",
+        "image": "https://konten.c24static.de/accounts/static/banklogos/all/hypovereinsbank.png",
+        "fee": 0.0,
+        "bonus": 75
+      }
+    ]
+  }
+}
