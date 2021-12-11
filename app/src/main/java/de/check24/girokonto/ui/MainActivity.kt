@@ -1,4 +1,4 @@
-package de.check24.girokonto
+package de.check24.girokonto.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -7,6 +7,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import de.check24.girokonto.R
 import de.check24.girokonto.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
