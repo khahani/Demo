@@ -7,14 +7,21 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import de.check24.girokonto.MainApplication
 import de.check24.girokonto.R
 import de.check24.girokonto.databinding.ActivityMainBinding
+import de.check24.girokonto.di.AppComponent
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
+    lateinit var appComponent: AppComponent
+        private set
+
     override fun onCreate(savedInstanceState: Bundle?) {
+        appComponent = (application as MainApplication).appComponent
+        appComponent.inject(this)
         super.onCreate(savedInstanceState)
 
         binding = ActivityMainBinding.inflate(layoutInflater)

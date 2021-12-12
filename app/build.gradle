@@ -174,4 +174,11 @@ dependencies {
     implementation "com.squareup.okhttp3:logging-interceptor:$com_squareup_okhttp3_logging_interceptor"
     implementation "com.squareup.retrofit2:converter-moshi:$com_squareup_retrofit2_converter_moshi"
 
+    //Dagger
+    implementation "com.google.dagger:dagger:$daggerVersion"
+    kapt "com.google.dagger:dagger-compiler:$daggerVersion"
+    // Using Dagger in androidTest and Robolectric too
+    kaptAndroidTest "com.google.dagger:dagger-compiler:$daggerVersion"
+    kaptTest "com.google.dagger:dagger-compiler:$daggerVersion"
+
 }

@@ -8,7 +8,7 @@
       ],
       "logo": "https://www.check24.de/assets/images/mobile/misc/funktioniert_garantie_girokonto.png"
     },
-    "recommend": [
+    "recommends": [
       {
         "title": "Empfehlung bedingungslos kostenlose Kontoführung",
         "text": "Das dauerhaft kostenlose Girokonto der DKB glänzt durch kostenlose Bargeldabhebung weltweit, eine kostenlose VISA Debitkarte sowie einen sehr attraktiven Dispozins. Zusätzlich kann man bargeldlos mit Apple und Google Pay bezahlen.",
@@ -23,7 +23,7 @@
         "short": "HypoVereinsbank - HVB PlusKonto",
         "image": "https://konten.c24static.de/accounts/static/banklogos/all/hypovereinsbank.png",
         "fee": 0.0,
-        "bonus": 75
+        "bonus": 75.0
       }
     ]
   }

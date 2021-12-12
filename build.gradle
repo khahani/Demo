@@ -75,4 +75,5 @@ ext {
     com_squareup_moshi_moshi_kotlin = '1.13.0'
     com_squareup_okhttp3_logging_interceptor = '4.9.3'
     com_squareup_retrofit2_converter_moshi = '2.9.0'
+    daggerVersion = '2.40.5'
 }
